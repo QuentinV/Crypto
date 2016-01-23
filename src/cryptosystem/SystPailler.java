@@ -34,7 +34,7 @@ public class SystPailler extends CryptoSystem {
         BigInteger zero = new BigInteger("0");
         BigInteger one = new BigInteger("1");
 
-        if (m.compareTo(pk) >= 0 || m.compareTo(zero) <= 0)
+        if (m.compareTo(pk) >= 0) //|| m.compareTo(zero) <= 0)
             return null;
 
         //generate random number R between 0

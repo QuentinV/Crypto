@@ -7,6 +7,14 @@ public abstract class CryptoSystem {
         public BigInteger pk;
         public BigInteger sk;
 
+        public Keys() {
+        }
+
+        public Keys(BigInteger pk, BigInteger sk) {
+            this.pk = pk;
+            this.sk = sk;
+        }
+
         @Override
         public String toString() {
             return "Pk = "+pk+"\nSk = "+sk;
