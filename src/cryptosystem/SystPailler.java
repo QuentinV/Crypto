@@ -51,7 +51,7 @@ public class SystPailler extends CryptoSystem {
         BigInteger part1 = g.modPow(m, pkPk);
         BigInteger part2 = r.modPow(pk, pkPk);
 
-        c = part1.multiply(part2);
+        c = part1.multiply(part2).mod(pkPk);
 
         return c;
     }

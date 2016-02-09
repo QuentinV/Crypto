@@ -48,6 +48,7 @@ public class Bob extends env.Bob {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
+            String repOk = "";
             for(int cpt = 1; ; cpt++)
             {
                 String rep = br.readLine();
@@ -61,11 +62,13 @@ public class Bob extends env.Bob {
 
                     BigInteger decrypt = cs.dechiffrer(repBi, myKeys);
                     String myRep = Utils.convertToString(decrypt);
+                    if (cpt == secretQ.getNum())
+                        repOk = myRep;
                     System.out.println("REPONSE"+(cpt == secretQ.getNum() ? " OK" : "")+" = "+myRep);
-
-                    //break;
                 }
             }
+
+            System.out.println("\nLa reponse a la question "+secretQ.getNum()+" est : "+repOk);
 
             s.close();
         } catch (IOException e) {

@@ -33,8 +33,10 @@ public class Alice extends env.Alice {
         System.out.println("Hello my name is Alice. How are you ?");
         System.out.println("Voici les reponses aux questions : ");
 
-        for (int i = 0; i < responses.size(); ++i)
+        for (int i = 0; i < responses.size(); ++i) {
             System.out.println(responses.get(i));
+            System.out.println(Utils.convertString(responses.get(i).getContent()));
+        }
 
         // Server socket
         try {
@@ -65,13 +67,11 @@ public class Alice extends env.Alice {
                 bw.write('\n');
                 bw.flush();
 
-
                 // On recoit la réponse encryptée par Bob, que l'on décrypte
                 BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
                 String value = br.readLine(); //BigInteger
                 BigInteger repBob = cs.dechiffrer(new BigInteger(value), myKeys);
-                System.out.println("Réponse encryptée par Bob : " + repBob.toString());
-
+                System.out.println("Message reçu décrypté : " + repBob.toString());
 
                 // On encrypte maintenant avec la clé de Bob
                 BigInteger repFinale = cs.chiffrer(repBob, Bob.getPublicKey());
